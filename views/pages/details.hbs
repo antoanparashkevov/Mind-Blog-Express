@@ -1,0 +1,39 @@
+<main>
+    {{#with blog}}
+    <div class="details-container">
+        <div class="details-container-image">
+            <img src="./images/around-the-world.jpeg">
+        </div>
+        <div class="details-container-info">
+            <h2>{{title}}</h2>
+            <h3>{{blogCategory}}</h3>
+            <h3>By: {{ownerMail}}</h3>
+            <!--If there are followers-->
+            {{#if folowList}}
+            <h4>Follow By: jace.m, sandra.p</h4>
+            {{else}}
+            <!--If there are no followers-->
+            <h4>There are no followers yet!</h4>
+            {{/if}}
+        </div>
+        <div class="details-container-content">
+            <p>{{description}}</p>
+        </div>
+        <div class="btn-container">
+            {{#if isOwner}}
+            <a href="/catalog/{{_id}}/edit">Edit</a>
+            <a href="/catalog/{{_id}}/delete">Delete</a>
+             {{else}}
+            {{#if canFollow}}
+            <!-- logged in user who has not yet followed the blog-->
+            <a href="/catalog/{{_id}}/follow">Follow</a>
+            {{/if}}
+            {{#if cantFollow}}
+            <!-- logged in user who has already followed the blog-->
+            <p class="follow-pub">You already follow this blog!</p>
+            {{/if}}
+            {{/if}}
+        </div>
+    </div>
+    {{/with}}
+</main>
